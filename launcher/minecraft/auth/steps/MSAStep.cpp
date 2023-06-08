@@ -138,11 +138,8 @@ void MSAStep::onOAuthActivityChanged(Katabasis::Activity activity) {
             emit finished(AccountTaskState::STATE_FAILED_GONE, tr("Microsoft user authentication failed - user no longer exists."));
             return;
         }
-        case Katabasis::Activity::FailedHard: {
-            emit hideVerificationUriAndCode();
-            emit finished(AccountTaskState::STATE_FAILED_HARD, tr("Microsoft user authentication failed."));
-            return;
-        }
+            emit finished(AccountTaskState::STATE_OFFLINE, tr("Microsoft user authentication ended with a network error."));
+            //emit finished(AccountTaskState::STATE_FAILED_HARD, tr("Microsoft user authentication failed."));
         default: {
             emit hideVerificationUriAndCode();
             emit finished(AccountTaskState::STATE_FAILED_HARD, tr("Microsoft user authentication completed with an unrecognized result."));
